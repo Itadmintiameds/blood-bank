@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import LocationMap from './LocationMap';
 
 interface FormData {
   name: string;
@@ -189,6 +190,13 @@ const ContactUsSection = () => {
             </div>
           </form>
         </div>
+      </div>
+
+      <div className="mt-16 mx-auto max-w-6xl">
+        <h3 className="text-2xl font-semibold text-gray-800 text-center mb-6">
+          Our Location
+        </h3>
+        <LocationMap className="h-72 md:h-96 shadow-lg" />
       </div>
     </section>
   );

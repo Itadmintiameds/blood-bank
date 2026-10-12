@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,9 +16,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "CurePlus Blood Bank ",
-  description: "CurePlus Blood Bank",
-}
+  title: "Blood Bank in Mysore | CurePlus Blood Bank & Donors",
+  description:
+    "Donate blood and save lives at CurePlus Blood Bank Mysore. Register as a donor, join blood camps, and support patients in need today.",
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://www.cureplusbloodbank.com/",
+  },
+  icons: {
+    icon: "/bloodBank.png",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -28,9 +38,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-       <head>
-          <link rel='icon' href='/bloodBank.png' />
-        </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

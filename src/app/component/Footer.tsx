@@ -1,9 +1,11 @@
 'use client'
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 import Link from "next/link";
 import Image from "next/image";
+import LocationMap from "./LocationMap";
+import { SOCIAL_LINKS } from "./socialLinks";
 
 const Footer = () => {
   const [subscribed, setSubscribed] = useState(false);
@@ -25,40 +27,34 @@ const Footer = () => {
             <h2 className="text-2xl font-bold mb-4">Stay Connected</h2>
             <div className="flex justify-center gap-6 mb-4">
               <motion.a
-                href="https://facebook.com"
+                href={SOCIAL_LINKS.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="CurePlus Blood Center on Facebook"
                 className="text-2xl hover:text-blue-600 transition"
                 whileHover={{ scale: 1.1 }}
               >
                 <FaFacebook />
               </motion.a>
               <motion.a
-                href="https://twitter.com"
+                href={SOCIAL_LINKS.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-2xl hover:text-blue-400 transition"
-                whileHover={{ scale: 1.1 }}
-              >
-                <FaTwitter />
-              </motion.a>
-              <motion.a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                aria-label="CurePlus Blood Center on Instagram"
                 className="text-2xl hover:text-pink-500 transition"
                 whileHover={{ scale: 1.1 }}
               >
                 <FaInstagram />
               </motion.a>
               <motion.a
-                href="https://linkedin.com"
+                href={SOCIAL_LINKS.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-2xl hover:text-blue-700 transition"
+                aria-label="CurePlus Blood Center on YouTube"
+                className="text-2xl hover:text-red-600 transition"
                 whileHover={{ scale: 1.1 }}
               >
-                <FaLinkedin />
+                <FaYoutube />
               </motion.a>
             </div>
           </div>
@@ -76,8 +72,7 @@ const Footer = () => {
               />
               <div className="mt-8 text-center">
                 <h3 className="text-xl font-semibold mb-2">Contact Us</h3>
-                {/* <p className="text-gray-400">Email: rashmi@cureplusbloodbank.com</p>
-                <p className="text-gray-400">Phone:+91 8214506445</p> */}
+                <p className="text-gray-400">Phone: 0821 450 6445</p>
               </div>
             </div>
 
@@ -86,9 +81,9 @@ const Footer = () => {
               <ul className="text-gray-400">
                 <li><Link href="/" className="hover:text-red-600 transition">Home</Link></li>
                 <li><Link href="#how-it-works" className="hover:text-red-600 transition">How It Works</Link></li>
-                <li><Link href="/story" className="hover:text-red-600 transition">About</Link></li>
-                <li><Link href="/join" className="hover:text-red-600 transition">Join Us</Link></li>
-                <li><Link href="/faq" className="hover:text-red-600 transition">faq</Link></li>
+                <li><Link href="/about-cureplus-blood-bank" className="hover:text-red-600 transition">About</Link></li>
+                <li><Link href="/blood-donor-registration" className="hover:text-red-600 transition">Join Us</Link></li>
+                <li><Link href="/faq" className="hover:text-red-600 transition">FAQs</Link></li>
               </ul>
             </div>
 
@@ -112,6 +107,11 @@ const Footer = () => {
                 </div>
               )}
             </div>
+          </div>
+
+          <div className="max-w-4xl mx-auto mb-6">
+            <h3 className="text-xl font-semibold mb-4">Our Location</h3>
+            <LocationMap className="h-64 md:h-72" />
           </div>
         </div>
         <div className="py-4 bg-gray-800">

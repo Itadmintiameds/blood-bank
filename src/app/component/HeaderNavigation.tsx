@@ -450,9 +450,10 @@ import {
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { FaDownload } from "react-icons/fa";
+import { FaDownload, FaYoutube } from "react-icons/fa";
 import { useState, useEffect } from 'react';
 import Image from "next/image";
+import { SOCIAL_LINKS } from './socialLinks';
 
 type NavItem = {
   name: string;
@@ -477,6 +478,23 @@ const BloodBankNavbar = ({ navigation }: Props) => {
   const openLicenseViewer = () => setIsLicenseOpen(true);
   const closeLicenseViewer = () => setIsLicenseOpen(false);
 
+  const youtubeLink = (
+    <a
+      href={SOCIAL_LINKS.youtube}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="CurePlus Blood Center on YouTube"
+      className={clsx(
+        "flex items-center rounded-full p-2 transition focus:outline-none focus:ring-2",
+        isScrolled
+          ? "text-white hover:bg-red-700 focus:ring-white"
+          : "text-red-700 hover:bg-gray-200 focus:ring-gray-500"
+      )}
+    >
+      <FaYoutube className="h-5 w-5" aria-hidden="true" />
+    </a>
+  );
+
   return (
     <>
       <Disclosure
@@ -500,6 +518,7 @@ const BloodBankNavbar = ({ navigation }: Props) => {
                 />
               </Link>
               <div className="flex items-center gap-2">
+                {youtubeLink}
                 <button
                   onClick={openLicenseViewer}
                   className={clsx(
@@ -556,6 +575,7 @@ const BloodBankNavbar = ({ navigation }: Props) => {
 
             {/* Desktop: View License Button */}
             <div className="hidden sm:flex items-center gap-4 ml-auto">
+              {youtubeLink}
               <button
                 onClick={openLicenseViewer}
                 className={clsx(

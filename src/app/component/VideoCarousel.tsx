@@ -4,35 +4,87 @@ import React, { useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// I have updated the data to separate the title and date for better display
-const videoData = [
+type Video = {
+  videoId: string;
+  title: string;
+  isShort?: boolean; // YouTube Shorts are vertical (9:16)
+  date?: string | null;
+  description?: string;
+};
+
+// Latest CurePlus Blood Center videos (titles are the published YouTube titles)
+const videoData: Video[] = [
   {
-    type: 'youtube',
-    url: 'https://www.youtube.com/embed/b-bzT9WbjL0',
-    videoId: 'b-bzT9WbjL0',
-    title: 'POSH (Prevention of Sexual Harassment) Training at CurePlus Hospitals',
-    date: '18-09-2025',
-    description: 'CurePlus Hospitals hosted POSH training with Rtn. Col. Ravi Shirahatti (Retd.), engaging 238 plus employees and reinforcing our commitment to a safe, respectful, and inclusive workplace where everyone feels empowered.',
+    videoId: 'Um2a0-S4Qpk',
+    title: 'Together for Life | Blood Donation Camp at Unilog Software | CurePlus Blood Centre',
   },
   {
-    type: 'youtube',
-    url: 'https://www.youtube.com/embed/fE77gCpSnPM',
-    videoId: 'fE77gCpSnPM',
-    title: 'CurePlus Blood Centre | Our First Blood Donation Camp',
-    date: '17-09-2025',
-    description: ' CurePlus Blood Centre and ARC Sportzone Hebbal, with Terapanth Yuvak Parishad Mysuru, hosted our first Blood Donation Camp under Raktadan Amrit Mahotsav 2.0. Donors gave the gift of life, supported by Sudofer Syrup for community health. More than an event it’s the start of a movement. Together, we save lives.',
+    videoId: 'l43tfx_ek5E',
+    title: 'If I Can Donate, Mysuru Can Donate! 🩸 | CurePlus Blood Centre | Blood Donation Awareness',
+    isShort: true,
+  },
+  {
+    videoId: '0goXRqz9JtI',
+    title: 'Main Hoon Nayi Pehchaan. Main Hoon Lifesaver.',
+    isShort: true,
+  },
+  {
+    videoId: '31V8_wNZnFA',
+    title: 'You Don’t Need a Cape to Be a Hero ❤️ | Hero of Mysuru',
+    isShort: true,
+  },
+  {
+    videoId: 'kGJ3BiJGvpY',
+    title: 'This 15th August, Let’s Make ARC Sportzone a Place of Hope.',
+    isShort: true,
+  },
+  {
+    videoId: 'kgdtJucRiJ8',
+    title: 'BLOOD DONATION AT ARC SPORTZONE',
+    isShort: true,
+  },
+  {
+    videoId: 'J42JWuPRLyE',
+    title: 'BLOOD DONATION DRIVE | ARC SPORTZONE | Snake Shaym',
+    isShort: true,
+  },
+  {
+    videoId: 'Yk3F8teLEww',
+    title: 'BLOOD DONATION DRIVE | ARC SPORTZONE',
+    isShort: true,
+  },
+  {
+    videoId: '8vLD1I4DkmY',
+    title: 'Save Lives This Independence Day ❤️ | Blood Donation Camp | ARC Sportzone x CurePlus',
+    isShort: true,
+  },
+  {
+    videoId: 'xTaUOBWL5mI',
+    title: 'Blood Donation Camp with Free Medical & Eye Check-ups at rProcess | CurePlus Blood Center',
+  },
+  {
+    videoId: '-kGDnblJxkU',
+    title: 'CurePlus Blood Center & Rotary Mysore Blood Donation Camp at ITChamps | Saving Lives Together',
   },
 //   {
-//     type: 'youtube',
-//     url: 'https://www.youtube.com/embed/TkLjQyNti78',
+//     videoId: 'b-bzT9WbjL0',
+//     title: 'POSH (Prevention of Sexual Harassment) Training at CurePlus Hospitals',
+//     date: '18-09-2025',
+//     description: 'CurePlus Hospitals hosted POSH training with Rtn. Col. Ravi Shirahatti (Retd.), engaging 238 plus employees and reinforcing our commitment to a safe, respectful, and inclusive workplace where everyone feels empowered.',
+//   },
+//   {
+//     videoId: 'fE77gCpSnPM',
+//     title: 'CurePlus Blood Centre | Our First Blood Donation Camp',
+//     date: '17-09-2025',
+//     description: ' CurePlus Blood Centre and ARC Sportzone Hebbal, with Terapanth Yuvak Parishad Mysuru, hosted our first Blood Donation Camp under Raktadan Amrit Mahotsav 2.0. Donors gave the gift of life, supported by Sudofer Syrup for community health. More than an event it’s the start of a movement. Together, we save lives.',
+//   },
+//   {
 //     videoId: 'TkLjQyNti78',
 //     title: 'A New Chapter for CurePlus Hospitals',
 //     date: '04-09-2025',
 //     description: 'Construction of our new CurePlus Hospital has begun, reinforcing our commitment to advanced, compassionate healthcare for generations to come.',
 //   },
-//     {
-//     type: 'youtube',
-//     url: 'https://www.youtube.com/embed/TNoydh6wszw',
+//   {
 //     videoId: 'TNoydh6wszw',
 //     title: 'CurePlus Hospitals – Stories of Healing & Hope',
 //     date: null, // No date for this video
@@ -71,18 +123,22 @@ const VideoCarousel = () => {
             <FaChevronLeft size={20} />
           </button>
 
-          {/* Video Player Area */}
-          <div className="relative w-full aspect-video rounded-2xl shadow-xl overflow-hidden bg-black">
+          {/* Video Player Area (vertical for Shorts, widescreen otherwise) */}
+          <div
+            className={`relative w-full rounded-2xl shadow-xl overflow-hidden bg-black ${
+              currentVideo.isShort ? 'max-w-[320px] aspect-[9/16]' : 'aspect-video'
+            }`}
+          >
             <AnimatePresence initial={false}>
               <motion.iframe
                 key={currentIndex}
-                src={`${currentVideo.url}?autoplay=1&mute=1&loop=1&playlist=${currentVideo.videoId}`}
+                src={`https://www.youtube.com/embed/${currentVideo.videoId}?autoplay=1&mute=1&loop=1&playlist=${currentVideo.videoId}`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
                 className="w-full h-full"
-                title="YouTube video player"
+                title={currentVideo.title}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
@@ -118,9 +174,11 @@ const VideoCarousel = () => {
                   {currentVideo.date}
                 </p>
               )}
-              <p className="text-md text-gray-600 mt-3 max-w-2xl mx-auto">
-                {currentVideo.description}
-              </p>
+              {currentVideo.description && (
+                <p className="text-md text-gray-600 mt-3 max-w-2xl mx-auto">
+                  {currentVideo.description}
+                </p>
+              )}
             </motion.div>
           </AnimatePresence>
         </div>

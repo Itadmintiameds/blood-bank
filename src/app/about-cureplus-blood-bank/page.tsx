@@ -11,38 +11,42 @@ import Link from 'next/link'
 
 const navigation = [
   { name: 'Home', href: '/', current: false },
-  { name: 'Who We Are', href: '/story', current: true },
-  { name: 'Blood Facts', href: '/facts', current: false },
-  { name: 'Can I donate', href: '/donate', current: false },
+  { name: 'Who We Are', href: '/about-cureplus-blood-bank', current: true },
+  { name: 'Blood Facts', href: '/blood-donation-facts', current: false },
+  { name: 'Can I donate', href: '/blood-donation-mysore', current: false },
   { name: 'FAQs', href: '/faq', current: false },
-  { name: 'Join Us', href: '/join', current: false }
+  { name: 'Join Us', href: '/blood-donor-registration', current: false }
 ];
 
-const teamMembers = [
-  {
-    name: 'Dr. Sini Arjun',
-    role: 'Medical Officer',
-    image: '/sinimam.jpg',
-    bio: 'Dr. Sini Arjun is a compassionate medical officer at CurePlus Blood Center, dedicated to ensuring the safety and quality of blood donations. Her expertise and commitment to patient care are invaluable to our mission.',
-  },
-  {
-    name: 'Dr. Arjun Sachidanand',
-    role: 'Managing Trustee',
-    image: '/ArjunSachidanand.jpeg',
-    bio: 'Dr. Arjun Sachidanand is a visionary leader and the driving force behind CurePlus Blood Center. With a deep commitment to healthcare and community service, he has dedicated his career to improving access to life-saving resources in rural Karnataka.',
-  },
-  {
-    name: 'Capt. Raghu Das',
-    role: 'Chief Operating Officer',
-    image: '/RaghuDas.png',
-    bio: 'Capt. Raghu Das is a seasoned professional with extensive experience in operations management. His strategic vision and leadership skills are instrumental in ensuring the efficient functioning of CurePlus Blood Center.',
-  },
-  // {
-  //   name: 'Mrs. Rashmi N. Raj',
-  //   role: 'General Manager',
-  //   image: '/RashmiRaj.jpeg',
-  //   bio: 'Mrs. Rashmi N. Raj is a dynamic general manager at CurePlus Blood Center, overseeing daily operations and ensuring that our mission of saving lives is met with efficiency and compassion.',
-  // },
+// Previous "Meet Our Leadership" members, replaced by the team list in the website audit report.
+// const teamMembers = [
+//   {
+//     name: 'Dr. Sini Arjun',
+//     role: 'Medical Officer',
+//     image: '/sinimam.jpg',
+//     bio: 'Dr. Sini Arjun is a compassionate medical officer at CurePlus Blood Center, dedicated to ensuring the safety and quality of blood donations. Her expertise and commitment to patient care are invaluable to our mission.',
+//   },
+//   {
+//     name: 'Dr. Arjun Sachidanand',
+//     role: 'Managing Trustee',
+//     image: '/ArjunSachidanand.jpeg',
+//     bio: 'Dr. Arjun Sachidanand is a visionary leader and the driving force behind CurePlus Blood Center. With a deep commitment to healthcare and community service, he has dedicated his career to improving access to life-saving resources in rural Karnataka.',
+//   },
+//   {
+//     name: 'Capt. Raghu Das',
+//     role: 'Chief Operating Officer',
+//     image: '/RaghuDas.png',
+//     bio: 'Capt. Raghu Das is a seasoned professional with extensive experience in operations management. His strategic vision and leadership skills are instrumental in ensuring the efficient functioning of CurePlus Blood Center.',
+//   },
+// ]
+
+// CurePlus Blood Bank Team (names, roles and photos as supplied in the website audit report)
+const bloodBankTeam = [
+  { name: 'Dr. Sini Arjun', role: 'Medical Officer', image: '/team/sini-arjun.jpg' },
+  { name: 'Capt. Raghu M. Das', role: 'Counsellor', image: '/team/raghu-das.jpg' },
+  { name: 'Srinivasa C', role: 'Social Welfare Officer', image: '/team/srinivasa-c.jpg' },
+  { name: 'Namitha Chandramouli', role: 'Manager, Operations', image: '/team/namitha-chandramouli.jpg' },
+  { name: 'Mariya Arothi Soans', role: 'Technical Supervisor', image: '/team/mariya-arothi-soans.jpg' },
 ]
 
 const page = () => {
@@ -126,66 +130,33 @@ const page = () => {
         </div>
       </section>
 
-      {/* Leadership Team */}
-      <section className="bg-white py-20 px-6 md:px-20 ">
+      {/* CurePlus Blood Bank Team */}
+      <section className="bg-white py-20 px-6 md:px-20">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12">
-            Meet Our Leadership
+            CurePlus Blood Bank Team
           </h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
-            {teamMembers.map((member, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.03 }}
-                className="relative bg-gray-50 border border-gray-200 rounded-2xl shadow-md overflow-hidden group transition duration-300 ease-in-out hover:shadow-xl h-[300px]"
+          <ul className="flex flex-wrap justify-center gap-8">
+            {bloodBankTeam.map((member) => (
+              <li
+                key={member.name}
+                className="flex flex-col items-center w-full sm:w-[calc(50%_-_1rem)] lg:w-[calc(33.333%_-_1.34rem)] bg-gray-50 border border-gray-200 rounded-2xl shadow-md p-6"
               >
-                {/* Default View */}
-                <motion.div
-                  initial={{ opacity: 1 }}
-                  whileHover={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute inset-0 flex flex-col items-center justify-center p-6 z-10"
-                >
-                  <motion.div
-                    whileHover={{ y: -10 }}
-                    transition={{ type: 'spring', stiffness: 200 }}
-                    className="mb-4"
-                  >
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      width={100}
-                      height={100}
-                      className="rounded-full border-4 border-white shadow-md"
-                    />
-                  </motion.div>
-                  <h4 className="text-lg font-semibold text-gray-800">{member.name}</h4>
-                  <p className="text-sm text-gray-500">{member.role}</p>
-                </motion.div>
-
-                {/* Hover View - Slide Up Bio */}
-                <motion.div
-                  initial={{ y: 50, opacity: 0 }}
-                  whileHover={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.5, ease: 'easeOut' }}
-                  className="absolute inset-0 flex flex-col items-center justify-center bg-white px-6 text-center z-20"
-                >
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    width={50}
-                    height={50}
-                    className="rounded-full border-4 border-white shadow-md mb-4"
-                  />
-                  <p className="text-sm text-gray-700 leading-relaxed">{member.bio}</p>
-                </motion.div>
-              </motion.div>
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  width={112}
+                  height={112}
+                  className="h-28 w-28 rounded-full object-cover object-top border-4 border-white shadow-md mb-4"
+                />
+                <h3 className="text-lg font-semibold text-gray-800">{member.name}</h3>
+                <p className="text-sm text-gray-500">{member.role}</p>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
-
 
       {/* CTA Section */}
       <section className="bg-red-700 text-white py-16 text-center px-6 md:px-20">
@@ -199,7 +170,7 @@ const page = () => {
           <p className="text-lg mb-8">
             Join us in creating a future where every patient has access to the blood they need - on time, every time.
           </p>
-          <Link href="/join"
+          <Link href="/blood-donor-registration"
             className="bg-white text-red-700 font-bold py-3 px-6 rounded-full hover:bg-red-100 transition">
             Become a Donor
           </Link>
