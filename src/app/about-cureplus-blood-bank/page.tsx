@@ -43,8 +43,8 @@ const navigation = [
 // CurePlus Blood Bank Team (names, roles and photos as supplied in the website audit report)
 const bloodBankTeam = [
   { name: 'Dr. Sini Arjun', role: 'Medical Officer', image: '/team/sini-arjun.jpg' },
-  { name: 'Capt. Raghu M. Das', role: 'Counsellor', image: '/team/raghu-das.jpg' },
-  { name: 'Srinivasa C', role: 'Social Welfare Officer', image: '/team/srinivasa-c.jpg' },
+  { name: 'Capt. Raghu M. Das', role: 'Counsellor', image: '/team/srinivasa-c.jpg' },
+  { name: 'Srinivasa C', role: 'Social Welfare Officer', image: '/team/raghu-das.jpg' },
   { name: 'Namitha Chandramouli', role: 'Manager, Operations', image: '/team/namitha-chandramouli.jpg' },
   { name: 'Mariya Arothi Soans', role: 'Technical Supervisor', image: '/team/mariya-arothi-soans.jpg' },
 ]
