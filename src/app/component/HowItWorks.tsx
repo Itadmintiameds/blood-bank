@@ -13,7 +13,7 @@ import {
 const steps = [
   {
     icon: <FaUserCheck size={24} />,
-    title: "Register as a Donor",
+    title: "Register as a Donor", 
     description:
       "Sign up and provide your details to become a blood donor. Registration takes only a few minutes.",
   },
